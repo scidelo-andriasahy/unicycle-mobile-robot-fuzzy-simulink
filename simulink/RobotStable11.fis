@@ -1,0 +1,65 @@
+[System]
+Name='RobotStable11'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='AngleError'
+Range=[-3.14159265358979 3.14159265358979]
+NumMFs=5
+MF1='NG':'trapmf',[-4 -3 -1 -0.6]
+MF2='NP':'trimf',[-1 -0.5 0]
+MF3='Z':'trimf',[-0.3 0 0.3]
+MF4='PP':'trimf',[0 0.5 1]
+MF5='PG':'trapmf',[0.6 1 3 4]
+
+[Input2]
+Name='Distance'
+Range=[0 10]
+NumMFs=3
+MF1='Zero':'trimf',[-0.1 0 0.8]
+MF2='Moyen':'gaussmf',[1 3]
+MF3='Grand':'smf',[4 8]
+
+[Output1]
+Name='Vd'
+Range=[-0.1 1]
+NumMFs=4
+MF1='Zero':'trimf',[-0.1 0 0]
+MF2='SuperLent':'trimf',[-0.039 0.065 0.23]
+MF3='Lent':'trimf',[0.12 0.34 0.56]
+MF4='Rapide':'trapmf',[0.45 0.78 1.55 2.1]
+
+[Output2]
+Name='Vg'
+Range=[-0.1 1]
+NumMFs=4
+MF1='Zero':'trimf',[-0.1 0 0]
+MF2='SuperLent':'trimf',[-0.039 0.065 0.23]
+MF3='Lent':'trimf',[0.12 0.34 0.56]
+MF4='Rapide':'trapmf',[0.45 0.78 1.55 2.1]
+
+[Rules]
+1 1, 1 1 (1) : 1
+2 1, 1 1 (1) : 1
+3 1, 1 1 (1) : 1
+4 1, 1 1 (1) : 1
+5 1, 1 1 (1) : 1
+3 2, 3 3 (1) : 1
+2 2, 2 3 (1) : 1
+4 2, 3 2 (1) : 1
+1 2, 1 2 (1) : 1
+5 2, 2 1 (1) : 1
+3 3, 4 4 (1) : 1
+2 3, 3 4 (1) : 1
+4 3, 4 3 (1) : 1
+1 3, 1 3 (1) : 1
+5 3, 3 1 (1) : 1
